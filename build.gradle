@@ -1,0 +1,44 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.2'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+
+    id "io.freefair.lombok" version "5.3.3.3"
+    id 'java-library'
+    id 'idea'
+}
+
+group 'ua.goit'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+ext {
+    hibernateVersion = '6.1.0.Final'
+    springSecurityVersion = '5.3.3.RELEASE'
+    postgreVersion = '42.2.18'
+    javaAnnotationVersion = '1.3.2'
+    h2Version = '1.4.200'
+    tomcatJasperVersion = '9.0.44'
+}
+sourceCompatibility = '16'
+targetCompatibility = '16'
+jar {
+    enabled = false
+}
+dependencies {
+    implementation group: 'org.postgresql', name: 'postgresql', version: "${postgreVersion}"
+    implementation group: 'jstl', name: 'jstl', version: '1.2'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation group: 'org.springframework.security', name: 'spring-security-taglibs', version: "${springSecurityVersion}"
+    implementation group: 'org.hibernate', name: 'hibernate-validator', version: "${hibernateVersion}"
+    implementation group: 'javax.annotation', name: 'javax.annotation-api', version: "${javaAnnotationVersion}"
+    implementation group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: "${tomcatJasperVersion}"
+    implementation 'org.projectlombok:lombok:1.18.18'
+    testImplementation group: 'com.h2database', name: 'h2', version: "${h2Version}"
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+}
